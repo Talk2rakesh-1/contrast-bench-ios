@@ -7,6 +7,10 @@ final class ContrastBenchUITests: XCTestCase {
     app.launch()
     let foreground = app.textFields["foreground"]
     XCTAssertTrue(foreground.waitForExistence(timeout: 10))
+    let screenshot = XCTAttachment(screenshot: app.screenshot())
+    screenshot.name = "ContrastBench initial workbench"
+    screenshot.lifetime = .keepAlways
+    add(screenshot)
     let initial = app.staticTexts["ratio"].label
     app.buttons["swap"].tap()
     XCTAssertEqual(app.staticTexts["ratio"].label, initial)
