@@ -74,15 +74,21 @@ struct Workbench: View {
   }
 
   private func colorField(_ title: String, text: Binding<String>) -> some View {
-    TextField(title, text: text).textInputAutocapitalization(.characters)
-      .autocorrectionDisabled().keyboardType(.asciiCapable)
-      .accessibilityLabel(title).accessibilityIdentifier(title.lowercased())
-      .onChange(of: text.wrappedValue) { _, value in text.wrappedValue = String(value.prefix(16)) }
+    LabeledContent(title) {
+      TextField(title, text: text).textInputAutocapitalization(.characters)
+        .autocorrectionDisabled().keyboardType(.asciiCapable)
+        .multilineTextAlignment(.trailing)
+        .accessibilityLabel(title).accessibilityIdentifier(title.lowercased())
+        .onChange(of: text.wrappedValue) { _, value in text.wrappedValue = String(value.prefix(16))
+        }
+    }
   }
   private func color(_ value: RGB) -> Color {
     Color(.sRGB, red: value.red, green: value.green, blue: value.blue, opacity: 1)
   }
   private func status(_ title: String, passed: Bool, threshold: String) -> some View {
-    LabeledContent(title + " (" + threshold + ")", value: passed ? "Pass" : "Fail")
+    LabeledContent(title + " (" + threshold + ")") {
+      Text(passed ? "Pass" : "Fail").foregroundStyle(.primary)
+    }
   }
 }

@@ -7,6 +7,8 @@ final class ContrastBenchUITests: XCTestCase {
     app.launch()
     let foreground = app.textFields["foreground"]
     XCTAssertTrue(foreground.waitForExistence(timeout: 10))
+    XCTAssertTrue(app.staticTexts["Foreground"].exists)
+    XCTAssertTrue(app.staticTexts["Background"].exists)
     let screenshot = XCTAttachment(screenshot: app.screenshot())
     screenshot.name = "ContrastBench initial workbench"
     screenshot.lifetime = .keepAlways
