@@ -1,6 +1,7 @@
 import XCTest
 
 final class ContrastBenchUITests: XCTestCase {
+  @MainActor
   func testValidationAndSwap() {
     let app = XCUIApplication()
     app.launch()
