@@ -17,6 +17,12 @@ Open `ContrastBench.xcodeproj` in Xcode 16+ and run the ContrastBench scheme on 
 
 A useful boundary example: `#777777` on white fails AA normal text; `#767676` passes. Decisions use unrounded ratios, even when the displayed value looks close to a threshold.
 
+## Simulator preview
+
+![ContrastBench on iPhone 16 Pro](assets/contrast-bench.png)
+
+Captured from the passing [UI smoke test](https://github.com/Talk2rakesh-1/contrast-bench-ios/actions/runs/40561357724). Physical-device and broader accessibility checks remain documented follow-ups.
+
 ## Design
 
 `SwiftUI state → validated RGB → linearized sRGB luminance → ContrastResult → preview/report`
